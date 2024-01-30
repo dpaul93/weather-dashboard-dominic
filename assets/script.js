@@ -27,7 +27,7 @@ $("#search-form").submit(function (event) {
 
             const groupedByDay = {};
             data.list.foreEach((forecast) => {
-                const datOfWeek = dayjs(forcast.dt_text).format("dddd DD");
+                const dayOfWeek = dayjs(forcast.dt_text).format("dddd DD");
 
                 if (dayjs(forecast.dt_txt).isAfter(dayjs(), "day")) {
                 if (!groupedByDay[dayOfWeek]) {
@@ -70,15 +70,15 @@ $("#search-form").submit(function (event) {
             .attr("alt", "Weather Icon");
             $("#today").append(image, "<hr>");
 
-            const tempKelvin = data.list[0].main.temp;
-            const tempC = $("<p>").text(
-            `Temp: ${Math.round(tempKelvin - 273.15)}°C`
+            const tempK = data.list[0].main.temp;
+            const tempCel = $("<p>").text(
+            `Temp: ${Math.round(tempK - 273.15)}°C`
             );
             const wind = $("<p>").text(`Wind: ${data.list[0].wind.speed} m/ph`);
             const humidity = $("<p>").text(
             `Humidity: ${data.list[0].main.humidity}%`
             );
-            $("#today").append(tempC, wind, humidity);
+            $("#today").append(tempCel, wind, humidity);
 
             displayWeatherData();
         });
@@ -157,11 +157,11 @@ function displayCities(cities) {
                     const forecast = groupedByDay[dayOfWeek];
 
                     const imageUrl = `https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png`;
-                    const tempKelvin = forecast.main.temp;
-                    const tempC = `${Math.round(tempKelvin - 273.15)}°C`;
+                    const tempK = forecast.main.temp;
+                    const tempCel = `${Math.round(tempK - 273.15)}°C`;
 
                     dayContainer.append(
-                    `<div><img src="${imageUrl}" alt="Weather Icon"><br> ${forecast.weather[0].description} <br>Temp: ${tempC} |<br> Wind: ${forecast.wind.speed} m/ph | <br>Humidity: ${forecast.main.humidity}%</div> <hr>`
+                    `<div><img src="${imageUrl}" alt="Weather Icon"><br> ${forecast.weather[0].description} <br>Temp: ${tempCel} |<br> Wind: ${forecast.wind.speed} m/ph | <br>Humidity: ${forecast.main.humidity}%</div> <hr>`
                     );
 
                     forecastContainer.append(dayContainer);
@@ -185,9 +185,9 @@ function displayCities(cities) {
                 .attr("alt", "Weather Icon");
                 $("#today").append(image, "<hr>");
 
-                const tempKelvin = data.list[0].main.temp;
-                const tempC = $("<p>").text(
-                `Temp: ${Math.round(tempKelvin - 273.15)}°C`
+                const tempK = data.list[0].main.temp;
+                const tempCel = $("<p>").text(
+                `Temp: ${Math.round(tempK - 273.15)}°C`
                 );
                 const wind = $("<p>").text(
                 `Wind: ${data.list[0].wind.speed} m/ph`
@@ -195,7 +195,7 @@ function displayCities(cities) {
                 const humidity = $("<p>").text(
                 `Humidity: ${data.list[0].main.humidity}%`
                 );
-                $("#today").append(tempC, wind, humidity);
+                $("#today").append(tempCel, wind, humidity);
 
                 displayWeatherData();
             });

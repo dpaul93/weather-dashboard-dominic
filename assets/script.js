@@ -54,6 +54,37 @@ $(document).ready(function () {
                 }
                 }
             
+                const currentDate = dayjs().format("dddd DD MMM YYYY | HH:mm");
+            const txt1 = $("<h2>").text(currentDate);
+            $("#today").append(txt1);
+            const location = `${cityname}, ${country}`;
+            const locationParagraph = $("<h2>").text(location);
+            const description0 = $("<span>").text(
+            data.list[0].weather[0].description
+            );
+            $("#today").append(locationParagraph, description0);
+
+
+            const imageUrl = `https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`;
+            const image = $("<img>")
+            .attr("src", imageUrl)
+            .attr("alt", "Weather Icon");
+            $("#today").append(image, "<hr>");
+
+            
+            const tempKelvin = data.list[0].main.temp;
+            const tempC = $("<p>").text(
+            `Temp: ${Math.round(tempKelvin - 273.15)}°C`
+            );
+            const wind = $("<p>").text(`Wind: ${data.list[0].wind.speed} m/ph`);
+            const humidity = $("<p>").text(
+            `Humidity: ${data.list[0].main.humidity}%`
+            );
+            $("#today").append(tempC, wind, humidity);
+
+            displayWeatherData();
+        });
+    })
             }
         })
         );

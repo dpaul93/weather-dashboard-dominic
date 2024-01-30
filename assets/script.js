@@ -196,4 +196,36 @@ $(document).ready(function () {
                 .attr("alt", "Weather Icon");
                 $("#today").append(image, "<hr>");
 
+                const tempKelvin = data.list[0].main.temp;
+                const tempC = $("<p>").text(
+                `Temp: ${Math.round(tempKelvin - 273.15)}°C`
+                );
+                const wind = $("<p>").text(
+                `Wind: ${data.list[0].wind.speed} m/ph`
+                );
+                const humidity = $("<p>").text(
+                `Humidity: ${data.list[0].main.humidity}%`
+                );
+                $("#today").append(tempC, wind, humidity);
+
+                displayWeatherData();
+                });
+            })
+            .catch((error)=> {
+                console.log(error);
+            });
+
+            $("#today").empty();
+            $("#weatherForcast").empty();
+        });
+    });
+            }
+
+            function deleteCity(index) {
+                const savedCities = JSON.parse(localStorage.getItem("savedCities")) || [];
+                savedCities.splice(index, 1);
+                localStorage.setItem("savedCities", JSON.stringify(savedCities));
+                displayCities(savedCities);
+            }
+
         });

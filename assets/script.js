@@ -85,6 +85,16 @@ $(document).ready(function () {
             displayWeatherData();
         });
     })
+    .catch((error)=> {
+        console.log(error);
+    });
+
+    $("#today").empty();
+    $("#weatherForecast").empty();
+
+    const savedCities = JSON.parse(localStorage.getItem("savedCities")) || [];
+    savedCities.push(cityname);
+    localStorage.setItem("savedCities", JSON.stringify(savedCities));
             }
-        })
-        );
+        });
+        

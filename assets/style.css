@@ -1,0 +1,11 @@
+#fiveDayForcast {
+    display: flex;
+    flex-direction: wrap;
+    justify-content: space-between;
+}
+
+.input-group {
+    display: flex;
+    margin-bottom: 5px;
+    align-items: start;
+}
